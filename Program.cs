@@ -19,23 +19,6 @@ app.UseHttpsRedirection();
 
 string connectionString = app.Configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING")!;
 
-try
-{
-    // Table would be created ahead of time in production
-    using var conn = new SqlConnection(connectionString);
-    conn.Open();
-
-    var command = new SqlCommand(
-        "CREATE TABLE Persons (ID int NOT NULL PRIMARY KEY IDENTITY, FirstName varchar(255), LastName varchar(255));",
-        conn);
-    using SqlDataReader reader = command.ExecuteReader();
-}
-catch (Exception e)
-{
-    // Table may already exist
-    Console.WriteLine(e.Message);
-}
-
 app.MapGet("/Person", () => {
     var rows = new List<string>();
 
