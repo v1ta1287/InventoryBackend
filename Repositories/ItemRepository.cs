@@ -15,7 +15,7 @@ namespace InventoryBackend.Repositories
 
         public ICollection<Item> GetItems()
         {
-            return _context.Item.OrderBy(i => i.ItemId).ToList();
+            return _context.Item.ToList();
         }
     }
 }

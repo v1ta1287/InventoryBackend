@@ -1,13 +1,12 @@
 ﻿using InventoryBackend.Interfaces;
 using InventoryBackend.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryBackend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItemController : Controller
+    public class ItemController : ControllerBase
     {
         private readonly ItemRepositoryInterface _itemRepository;
 
@@ -20,7 +19,7 @@ namespace InventoryBackend.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<Item>))]   
         public IActionResult GetItems()
         {
-            var pokemons = _itemRepository.GetItems();
+            var pokemons = _itemRepository.GetItems();  
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
