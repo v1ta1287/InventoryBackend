@@ -9,6 +9,6 @@ namespace InventoryBackend.Data
         {
 
         }
-        public DbSet<Item> Items { get; set; }
+        public DbSet<Item> Item { get; set; }
     }
 }
