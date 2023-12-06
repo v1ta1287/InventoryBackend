@@ -13,9 +13,24 @@ namespace InventoryBackend.Repositories
             _context = context;
         }
 
+        public Item GetItem(int id)
+        {
+            return _context.Item.Where(i => i.ItemId == id).FirstOrDefault()!;
+        }
+
+        public Item GetItem(string name)
+        {
+            return _context.Item.Where(i => i.ItemName == name).FirstOrDefault()!;
+        }
+
         public ICollection<Item> GetItems()
         {
             return _context.Item.ToList();
+        }
+
+        public bool ItemExists(int id)
+        {
+            return _context.Item.Any(i => i.ItemId == id);
         }
     }
 }
